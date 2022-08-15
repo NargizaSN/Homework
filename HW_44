@@ -1,0 +1,37 @@
+create table "it-academy".sex (
+sex_id int unique primary key,
+sex_name varchar (6) not null
+);
+
+create table "it-academy".visitors(
+full_name varchar(255) not null primary key,
+DOB timestamp not null,
+Sex int not null references "it-academy".sex(sex_id)
+);
+
+create table "it-academy".visits(
+visitor_name varchar(255) not null references "it-academy".visitors(full_name),
+time_of_visit timestamp not null,
+trainer varchar (255) not null
+);
+
+
+insert into "it-academy".sex (sex_id, sex_name)
+values (1, 'male');
+insert into "it-academy".sex (sex_id, sex_name)
+values (2, 'female');
+
+
+insert into "it-academy".visitors (full_name, DOB, sex)
+values ('John Smith', '1980-01-01', 1);
+insert into "it-academy".visitors (full_name, DOB, Sex)
+values ('Michael York', '1970-01-01', 1);
+insert into "it-academy".visitors (full_name, DOB, Sex)
+values ('Julia Roberts', '1975-01-01', 2);
+
+insert into "it-academy".visits (visitor_name, time_of_visit, trainer)
+values ('John Smith', '2022-01-01', 'James');
+insert into "it-academy".visits (visitor_name, time_of_visit, trainer)
+values ('Michael York', '2022-01-02', 'Michael');
+insert into "it-academy".visits (visitor_name, time_of_visit, trainer)
+values ('Julia Roberts', '2022-01-03', 'Rachel');
